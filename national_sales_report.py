@@ -1,7 +1,9 @@
+import os
 import io
 import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
+from pathlib import Path
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import cm
@@ -206,14 +208,13 @@ def export_pdf(
     doc.build(story)
     print(f"Informe guardado en: {output_path}")
 
-
 # ─────────────────────────────────────────────
 # 7. MAIN
 # ─────────────────────────────────────────────
 
 if __name__ == "__main__":
     # Carga y limpieza
-    salesDf = load_data("data/Sale Report.csv")
+    salesDf = load_data("data/National_Sale_Report.csv")
     salesDf = clean_data(salesDf)
 
     # Generar gráficos
@@ -254,5 +255,5 @@ if __name__ == "__main__":
                 "mientras que los colores estacionales tienen menor participación relativa."
             ),
         ],
-        output_path="informe_ventas_nacionales.pdf"
+        output_path="/output/informe_ventas_nacionales.pdf"
     )
